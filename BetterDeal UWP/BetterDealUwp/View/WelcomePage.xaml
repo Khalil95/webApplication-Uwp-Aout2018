@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="BetterDeal.View.WelcomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BetterDeal.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Welcome}"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <ScrollViewer>
+            <StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <CommandBar VerticalAlignment="Top">
+                        <AppBarButton Name="ButtonNewPublication" Command="{Binding ButtonNewPublication, Mode=TwoWay}" Icon="Edit" Label="New" />
+                        <AppBarButton Name="ButtonModify" Command="{Binding ButtonModifyPublication, Mode=TwoWay}" Icon="Repair" Label="Modify" />
+                        <AppBarButton Name="ButtonDelete" Command="{Binding ButtonDelete, Mode=TwoWay}"  Icon="Delete" Label="Delete" />
+                        <AppBarSeparator/>
+                        <AppBarButton Name="ButtonRefresh" Command="{Binding ButtonRefresh, Mode=TwoWay}" Icon="Refresh" Label="Refresh" />
+                        <AppBarButton Name="ButtonLogout" Command="{Binding ButtonLogout, Mode=TwoWay}" Icon="Stop" Label="Disconnect" />
+                        <CommandBar.Content>
+                            <TextBlock Text="News Feed" Margin="12,14" FontSize="20" TextAlignment="Center" FontStyle="Normal" FontWeight="Bold"/>
+                        </CommandBar.Content>
+                    </CommandBar>
+                </StackPanel>
+           
+                <StackPanel Margin="5">
+                    <ListView ItemsSource="{Binding NewsFeed}" SelectedItem="{Binding SelectedPublication, Mode=TwoWay}" ItemTemplate="{StaticResource PublicationTemplate1}" />
+                </StackPanel>
+                
+
+
+        </StackPanel>
+
+        </ScrollViewer>
+
+
+
+    </Grid>
+
+</Page>
