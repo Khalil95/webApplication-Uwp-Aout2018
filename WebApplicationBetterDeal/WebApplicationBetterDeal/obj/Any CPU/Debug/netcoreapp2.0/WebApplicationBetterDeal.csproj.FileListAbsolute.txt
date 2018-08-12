@@ -1,0 +1,12 @@
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\bin\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.deps.json
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\bin\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.runtimeconfig.json
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\bin\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.runtimeconfig.dev.json
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\bin\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.dll
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\bin\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.pdb
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.csproj.CoreCompileInputs.cache
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.AssemblyInfoInputs.cache
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.AssemblyInfo.cs
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.dll
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.pdb
+C:\Users\bil\Contacts\Desktop\BetterDealAout\c#\WebApplicationBetterDeal\WebApplicationBetterDeal\obj\Any CPU\Debug\netcoreapp2.0\WebApplicationBetterDeal.csprojResolveAssemblyReference.cache

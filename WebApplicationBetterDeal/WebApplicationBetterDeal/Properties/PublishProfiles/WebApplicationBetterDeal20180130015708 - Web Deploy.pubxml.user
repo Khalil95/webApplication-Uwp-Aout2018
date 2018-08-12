@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Ce fichier est utilisé par le processus de publication/package de votre projet web. Vous pouvez personnaliser le comportement de ce processus
+en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, visitez https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA75sQGm6OgEqnvIDv04qePQAAAAACAAAAAAAQZgAAAAEAACAAAACLNl2jBvAU8lUweJu/l/yPCyEPF+LzKlblNTGDWm+LkQAAAAAOgAAAAAIAACAAAADE6ARfMxLMM8ZyXYrXV8cK295s3hnUwGFcxy8D11nBT4AAAABKJIpi0aWi/SWPqwRfjdoIHgqdFrJy2lWpZ3byi+ECPZUyHwsO/H590F6tE49kcKqKlQADI11EGRdMkzBnClRYyX8pYSn6ITlmkEf3dc0kmGcx4Oxs3ggfCEOq1pw0lcJSNoivv8CfW/0DCmMQvlVFioHCCOH2tZcRkYTx0BiGQ0AAAAD//A03d+e4WZkaHda5LXW02V0lqN+B8poXKA1/gPrtgpbBXWXBhbW3iJwJzBFlYIdVF+7sESz2YcYLsz1lGzH5</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:serverprimodeal.database.windows.net,1433;Initial Catalog=primoDealBd;Persist Security Info=False;User ID=jason_bil;Password=primoDeal123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
