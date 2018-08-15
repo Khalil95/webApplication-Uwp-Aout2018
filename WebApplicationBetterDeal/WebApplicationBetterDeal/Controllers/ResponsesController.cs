@@ -103,6 +103,7 @@ namespace WebApplicationBetterDeal.Controllers
                 return BadRequest(ModelState);
             }
 
+            ApplicationUser applicationUserCur = await GetCurrentUserAsync();
             if (response.ApplicationUserId != null && response.PublicationId != 0)
             {
                 ApplicationUsersController applicationUsers = new ApplicationUsersController(getUMgr(),_context);
@@ -112,6 +113,12 @@ namespace WebApplicationBetterDeal.Controllers
                 response.ApplicationUser = applicationUser;
                 response.Publication = publication;
             }
+            else
+            {
+                response.ApplicationUserId = applicationUserCur.Id;
+                response.ApplicationUser = applicationUserCur;
+            }
+
 
             _context.Response.Add(response);
             await _context.SaveChangesAsync();
