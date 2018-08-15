@@ -160,12 +160,21 @@ namespace WebApplicationBetterDeal.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var publication = await _context.Publication.SingleOrDefaultAsync(m => m.Id == id);
+                // var publication = await _context.Publication.SingleOrDefaultAsync(m => m.Id == id);
+                var publication = await _context.Publication.Include(u => u.ApplicationUser).Include(u => u.Responses).SingleOrDefaultAsync(m => m.Id == id);
                 if (publication == null)
                 {
                     return NotFound();
                 }
 
+                //supp
+                var responses = publication.Responses;
+                if (responses != null) {
+                    foreach (var response in responses) {
+                        _context.Response.Remove(response);
+                    }
+                }
+                //
                 _context.Publication.Remove(publication);
                 await _context.SaveChangesAsync();
 

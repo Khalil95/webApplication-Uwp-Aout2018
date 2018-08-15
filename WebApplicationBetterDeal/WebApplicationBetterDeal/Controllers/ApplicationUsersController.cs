@@ -162,11 +162,37 @@ namespace WebApplicationBetterDeal.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
+                // var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
+                var applicationUser = await _context.ApplicationUser.Include(u => u.Publications).Include(u => u.Responses).SingleOrDefaultAsync(m => m.Id == id);
+
                 if (applicationUser == null)
                 {
                     return NotFound();
                 }
+
+                var publications = applicationUser.Publications;
+
+                if (publications != null) {
+                    foreach(var publication in publications)
+                    {
+                        var responsePublication = await _context.Publication.Include(u => u.Responses).SingleOrDefaultAsync(m => m.Id == publication.Id);
+                        if (responsePublication.Responses != null) {
+                            foreach (var res in responsePublication.Responses) {
+                                _context.Response.Remove(res);
+                            }
+                        }
+                        _context.Publication.Remove(publication);
+                    }
+                }
+
+                /*var responses = applicationUser.Responses;
+                if (responses != null)
+                {
+                    foreach (var response in responses)
+                    {
+                        _context.Response.Remove(response);
+                    }
+                }*/
 
                 _context.ApplicationUser.Remove(applicationUser);
                 await _context.SaveChangesAsync();
