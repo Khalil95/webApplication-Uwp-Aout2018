@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,6 +21,7 @@ namespace BetterDeal.ViewModel
         private INavigationService _navigationService = null;
         private Publication _selectedPublication;
         private ObservableCollection<Publication> _newsfeed = null;
+        private bool isInternetConnected = NetworkInterface.GetIsNetworkAvailable();
 
         private ICommand _buttonDelete;
         public ICommand ButtonDelete
@@ -111,7 +113,11 @@ namespace BetterDeal.ViewModel
 
         public WelcomeViewModel(INavigationService navigationService)
         {
+            if (!isInternetConnected) throw new Exception("No network");
+
             _navigationService = navigationService;
+
+
 
             var newsFeed = new NewsFeed();
             if (IsInDesignMode)
@@ -144,7 +150,7 @@ namespace BetterDeal.ViewModel
                 NewsFeed = new ObservableCollection<Publication>(newsfeed.Reverse());
             }
             else {
-                var messageDialog = new MessageDialog("Votre session a exiprée");
+                var messageDialog = new MessageDialog("Your session has expired !");
                 await messageDialog.ShowAsync();
                 MainViewModel._isLoading = false;
                 _navigationService.NavigateTo("MainPage");
@@ -164,7 +170,7 @@ namespace BetterDeal.ViewModel
         private async Task LogoutEvent()
         {
             if (_navigationService != null) {
-                DataService._logged = false;
+                //DataService._logged = false;
                 DataService._user = null;
                 DataService._client = null;
                 MainViewModel._isLoading = false;
@@ -197,24 +203,35 @@ namespace BetterDeal.ViewModel
             {
                 if(CanExecute())
                 {
-                    var ds = new DataService();
                     try
                     {
-                        await ds.DeletePublication(_selectedPublication.Id);
+                        var ds = new DataService();
+                        try
+                        {
+                            await ds.DeletePublication(_selectedPublication.Id);
 
-                        var messageDialog = new MessageDialog("Supprimer");
-                        await messageDialog.ShowAsync();
+                            var messageDialog = new MessageDialog("Deleted");
+                            await messageDialog.ShowAsync();
 
-                        this.InitializeAsync();
+                            this.InitializeAsync();
+                        }
+                        catch (Exception e)
+                        {
+                            var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
+
+                            dialog.Commands.Add(new Windows.UI.Popups.UICommand("Ok") { Id = 0 });
+
+                            var result = dialog.ShowAsync();
+                        }
                     }
-                    catch (Exception e)
-                    {
+                    catch (Exception e) {
                         var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
 
                         dialog.Commands.Add(new Windows.UI.Popups.UICommand("Ok") { Id = 0 });
 
                         var result = dialog.ShowAsync();
                     }
+
                 }
 
 

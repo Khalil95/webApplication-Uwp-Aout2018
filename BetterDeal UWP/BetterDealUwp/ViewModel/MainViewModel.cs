@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,7 +20,6 @@ namespace BetterDeal.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
-
 
 
         public MainViewModel(INavigationService navigationService)
@@ -81,20 +81,35 @@ namespace BetterDeal.ViewModel
             if (IsValidEmail(_emailValue) && IsValidPassword(_passwordValue))
             {
                 IsLoading = true;
-                var ds = new DataService();
+
                 try
                 {
-                    await ds.Login(_emailValue, _passwordValue);
+                     var ds = new DataService();
 
-                    if (DataService._user.Status != "admin")
+                    try
+                    {
+                        await ds.Login(_emailValue, _passwordValue);
+
+
+
+                        if (DataService._user.Status != "admin")
+                        {
+                            IsLoading = false;
+                            throw new Exception("You are not admin !");
+                        }
+                        _navigationService.NavigateTo("WelcomePage");
+                    }
+                    catch (Exception e)
                     {
                         IsLoading = false;
-                        throw new Exception("Vous n'etes pas admin !");
+                        var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
+
+                        dialog.Commands.Add(new Windows.UI.Popups.UICommand("Ok") { Id = 0 });
+
+                        var result = dialog.ShowAsync();
                     }
-                    _navigationService.NavigateTo("WelcomePage");
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     IsLoading = false;
                     var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
 

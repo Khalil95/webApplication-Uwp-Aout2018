@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,13 +15,14 @@ namespace BetterDeal.DataAccessObject
 {
     public class DataService
     {
-        public static bool _logged = false;
+        // public static bool _logged = false;
         public static HttpClient _client;
         public static Person _user;
         private static String tokenString;
         private readonly string _url = "http://webapplicationbetterdeal20180130015708.azurewebsites.net/";
+        private bool isInternetConnected = NetworkInterface.GetIsNetworkAvailable();
 
-   
+
         public DataService()
         {
             if (_client == null)
@@ -29,6 +31,9 @@ namespace BetterDeal.DataAccessObject
                _client = new HttpClient(handler) { BaseAddress = new Uri(_url) };
                 _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
             }
+
+            if (!isInternetConnected) throw new Exception("No network");
+
         }
 
 
@@ -60,7 +65,7 @@ namespace BetterDeal.DataAccessObject
 
                 _user = await GetUser(email);
                 if (_user.Status != "admin") {
-                    _logged = true;
+                    // _logged = true;
                 }
              }
 

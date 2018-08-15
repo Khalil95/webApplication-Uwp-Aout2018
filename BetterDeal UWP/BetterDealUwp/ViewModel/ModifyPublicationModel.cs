@@ -96,19 +96,28 @@ namespace BetterDeal.ViewModel
         {
             if (DescriptionValidation() && TitleValidation())
             {
-               
-                var ds = new DataService();
                 try
                 {
-                 
-                    await ds.ModifyPubliction(SelectedPublication.Id,_titleValue, _descriptionValue);
+                    var ds = new DataService();
+                    try
+                    {
 
-                    var messageDialog = new MessageDialog("Reussi");
-                    await messageDialog.ShowAsync();
+                        await ds.ModifyPubliction(SelectedPublication.Id, _titleValue, _descriptionValue);
 
-                    _navigationService.NavigateTo("WelcomePage");
-                }
-                catch (Exception e)
+                        var messageDialog = new MessageDialog("Success");
+                        await messageDialog.ShowAsync();
+
+                        _navigationService.NavigateTo("WelcomePage");
+                    }
+                    catch (Exception e)
+                    {
+                        var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
+
+                        dialog.Commands.Add(new Windows.UI.Popups.UICommand("Ok") { Id = 0 });
+
+                        var result = dialog.ShowAsync();
+                    }
+                }catch(Exception e)
                 {
                     var dialog = new Windows.UI.Popups.MessageDialog(e.Message, "Erreur");
 
@@ -116,6 +125,7 @@ namespace BetterDeal.ViewModel
 
                     var result = dialog.ShowAsync();
                 }
+
             }
             else
                 throw new NotImplementedException();

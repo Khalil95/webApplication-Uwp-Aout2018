@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-
+/*
 namespace BetterDeal.Converter
 {
     public class StringFormatConverter : IValueConverter
@@ -24,3 +24,4 @@ namespace BetterDeal.Converter
         }
     }
 }
+*/
